@@ -5,15 +5,16 @@ public class ChaserScript : CommonEnemyController {
 
 	void Update ()
     {
+        //This is common for all enemies.
         LookAtTarget();
+        CalculateDistanceFromTarget();
+        //This is not.
         MoveToTarget();
 	}
 
     void MoveToTarget()
     {
-        float distanceFromTarget = transform.position.magnitude - target.position.magnitude;
-
-        if (distanceFromTarget > catchZone)
+        if (distanceFromTarget >= catchZone)
             transform.position += (transform.forward * speed) * Time.deltaTime;
     }
 }

@@ -11,10 +11,12 @@ public class CommonEnemyController : MonoBehaviour {
     protected int speed;
     [SerializeField]
     protected float catchZone;
+    protected float distanceFromTarget;
 
     void Start()
     {
-        if (target == null) //This automatically looks for the "player" tag and assigns it as the target, assuming that's the target
+        //This automatically looks for the "player" tag and assigns it as the target, assuming that's the target
+        if (target == null) 
             target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
     }
 
@@ -22,5 +24,10 @@ public class CommonEnemyController : MonoBehaviour {
     {
         direction = target.position - transform.position;
         transform.forward = direction.normalized;
+    }
+
+    protected void CalculateDistanceFromTarget()
+    {
+        distanceFromTarget = Vector3.Distance(target.position, transform.position);
     }
 }
