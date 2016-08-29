@@ -3,18 +3,13 @@ using System.Collections;
 
 public class ChaserScript : CommonEnemyController {
 
-	void Update ()
+    protected override void SpecificBehaviour()
     {
-        //This is common for all enemies.
-        LookAtTarget();
-        CalculateDistanceFromTarget();
-        //This is not.
-        MoveToTarget();
-	}
+        //MoveToTarget(); Needs work, I need to specify when to stop. I think I can't use triggers again. :(
+    }
 
     void MoveToTarget()
     {
-        if (distanceFromTarget >= catchZone)
-            transform.position += (transform.forward * speed) * Time.deltaTime;
+        transform.position += (transform.forward * speed) * Time.deltaTime;
     }
 }

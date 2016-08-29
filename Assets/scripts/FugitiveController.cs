@@ -3,18 +3,13 @@ using System.Collections;
 
 public class FugitiveController : CommonEnemyController {
 
-	void Update ()
+    protected override void SpecificBehaviour()
     {
-        //This is common for all enemies.
-        LookAtTarget();
-        CalculateDistanceFromTarget();
-        //This is not.
         MoveAwayFromTarget();
-	}
+    }
 
     void MoveAwayFromTarget()
     {
-        if (distanceFromTarget < catchZone)
-            transform.position -= (transform.forward * speed) * Time.deltaTime;
+        transform.position -= (transform.forward * speed) * Time.deltaTime;
     }
 }
