@@ -3,7 +3,7 @@ using System.Collections;
 
 public class FugitiveController : CommonEnemyController {
 
-    protected override void SpecificBehaviour()
+    protected override void SpecificBehaviour(Transform target)
     {
         MoveAwayFromTarget();
     }

@@ -3,13 +3,17 @@ using System.Collections;
 
 public class ChaserScript : CommonEnemyController {
 
-    protected override void SpecificBehaviour()
+    [SerializeField]
+    private float stopZone;
+
+    protected override void SpecificBehaviour(Transform target)
     {
-        //MoveToTarget(); Needs work, I need to specify when to stop. I think I can't use triggers again. :(
+        MoveToTarget(target);
     }
 
-    void MoveToTarget()
+    void MoveToTarget(Transform target)
     {
-        transform.position += (transform.forward * speed) * Time.deltaTime;
+        if (Vector3.Distance(target.position, transform.position) >= stopZone)
+            transform.position += (transform.forward * speed) * Time.deltaTime;
     }
 }

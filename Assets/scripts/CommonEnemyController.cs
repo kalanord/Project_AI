@@ -15,7 +15,8 @@ public abstract class CommonEnemyController : MonoBehaviour {
         {
             LookAtTarget(target.transform);
             //This method is used in every Enemy script to modify their behaviour when they are aware of the player
-            SpecificBehaviour();
+            //Since I need to know the Player's position, I send the Player's transform as a parameter
+            SpecificBehaviour(target.gameObject.transform);
         }
     }
 
@@ -25,5 +26,5 @@ public abstract class CommonEnemyController : MonoBehaviour {
         transform.forward = direction.normalized;
     }
 
-    protected abstract void SpecificBehaviour(); 
+    protected abstract void SpecificBehaviour(Transform target); 
 }
