@@ -11,14 +11,16 @@ public class BulletController : MonoBehaviour {
     private Rigidbody rb;
     private float timeOfDeath; //Used to calculate when the bullet should die
     private Vector3 spawnPosition; //Used to reset the bullet to its initial position after death
+    private Transform parent;
 
     void Start()
     {
+        parent = transform.parent.transform;
         rb = GetComponent<Rigidbody>();
         rb.velocity = transform.forward * speed;
 
         //This saves the bullet initial position so it can be resetted when disabled.
-        spawnPosition = transform.position;
+        //spawnPosition = transform.position;
     }
 
     void Update()
@@ -27,13 +29,9 @@ public class BulletController : MonoBehaviour {
             gameObject.SetActive(false);
     }
 
-    void OnDisable() //Called when gameObject.SetActive(false)
-    {
-        transform.position = spawnPosition;
-    }
-
     void OnEnable() //Called when the bullet is fired.
     {
+        spawnPosition.Set(parent.position.x, 0.0f, parent.position.z);
         timeOfDeath = Time.time + lifeSpan;
     }
 }
